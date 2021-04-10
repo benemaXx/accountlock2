@@ -19,7 +19,7 @@ Follow these steps to provide temporary immutability to your account:
 
 1. Add the **accountlock2@eosio.code** permission to the owner authority of your account:
 
-##### CLEOS USAGE:
+##### CLEOS COMMAND:
 ```
 cleos set account permission YOUR_CONTRACT owner 
     ‘{
@@ -54,7 +54,7 @@ Warning:
     - a days_notice period is added as additional lock time after the first attempt to unlock the contract. When the notice days have expired, the unlock action can be called again to definitively release the contract. 
 
 
-##### CLEOS USAGE:
+##### CLEOS COMMAND:
 ```
 cleos -u https://eos.greymass.com push transaction '{"delay_sec": 0, "max_cpu_usage_ms": 0,
   "actions": [
@@ -91,6 +91,8 @@ target_contract: [YOUR_CONTRACT]
 If *days_notice* > 0, then the *days_notice* period is added as additional lock time after the first attempt to unlock the contract.
 If *days_notice* = 0, this action will unlock your account by restoring the *public_key_string* as the owner authority.
 
+
+##### CLEOS COMMAND:
 ```
 cleos -u https://eos.greymass.com push transaction '{
   "delay_sec": 0,
