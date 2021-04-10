@@ -1,0 +1,104 @@
+{
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT ",
+    "version": "eosio::abi/1.1",
+    "types": [],
+    "structs": [
+        {
+            "name": "lock",
+            "base": "",
+            "fields": [
+                {
+                    "name": "target_contract",
+                    "type": "name"
+                },
+                {
+                    "name": "unlock_time",
+                    "type": "time_point_sec"
+                },
+                {
+                    "name": "days_notice",
+                    "type": "uint8"
+                },
+                {
+                    "name": "public_key_str",
+                    "type": "string"
+                },
+                {
+                    "name": "unlocker_str",
+                    "type": "string"
+                },
+                {
+                    "name": "locked_auth",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "locks",
+            "base": "",
+            "fields": [
+                {
+                    "name": "id",
+                    "type": "uint64"
+                },
+                {
+                    "name": "locked_contract",
+                    "type": "name"
+                },
+                {
+                    "name": "unlock_time",
+                    "type": "time_point_sec"
+                },
+                {
+                    "name": "days_notice",
+                    "type": "uint8"
+                },
+                {
+                    "name": "unlocker",
+                    "type": "string"
+                },
+                {
+                    "name": "locked_auth",
+                    "type": "string"
+                },
+                {
+                    "name": "public_key_str",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "unlock",
+            "base": "",
+            "fields": [
+                {
+                    "name": "target_contract",
+                    "type": "name"
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "name": "lock",
+            "type": "lock",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "unlock",
+            "type": "unlock",
+            "ricardian_contract": ""
+        }
+    ],
+    "tables": [
+        {
+            "name": "locks",
+            "type": "locks",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        }
+    ],
+    "ricardian_clauses": [],
+    "variants": []
+}
