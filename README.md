@@ -21,7 +21,22 @@ Follow these steps to provide temporary immutability to your account:
 
 ##### CLEOS USAGE:
 ```
-cleos set account permission YOUR_CONTRACT owner ‘{“threshold”: 1,”keys”: [{“key”: “CURRENT_PUBLIC_KEY”,”weight”: 1}], “accounts”: [{“permission”:{“actor”:”accountlock2″,”permission”:”eosio.code”},”weight”:1}]}’ -p YOUR_CONTRACT@owner
+cleos set account permission YOUR_CONTRACT owner 
+    ‘{
+        “threshold”: 1,
+        ”keys”: [{“key”: “CURRENT_PUBLIC_KEY”,”weight”: 1}], 
+        “accounts”: [
+            {
+                “permission”:{
+                    “actor”:”accountlock2″,
+                    ”permission”:”eosio.code”
+                },
+                ”weight”:1
+            }
+        ]
+    }’ 
+    -p YOUR_CONTRACT@owner
+
 ```
 
 
