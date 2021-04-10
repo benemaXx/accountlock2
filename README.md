@@ -91,6 +91,8 @@ target_contract: [YOUR_CONTRACT]
 If *days_notice* > 0, then the *days_notice* period is added as additional lock time after the first attempt to unlock the contract.
 If *days_notice* = 0, this action will unlock your account by restoring the *public_key_string* as the owner authority.
 
+Please note: if *unlocker_str* was provided during lockup, then only the specified account may unlock the locked account. If *unlocker_str* was set to an empty string (""), then any account can unlock.
+
 
 ##### CLEOS COMMAND:
 ```
@@ -102,11 +104,11 @@ cleos -u https://eos.greymass.com push transaction '{
       "account": "accountlock2",
       "name": "unlock",
       "data": {
-        "target_contract": "blendertest1"
+        "target_contract": "YOUR_CONTRACT"
       },
       "authorization": [
         {
-          "actor": "contractlock",
+          "actor": "UNLOCKER_CONTRACT",
           "permission": "owner"
         }
       ]
