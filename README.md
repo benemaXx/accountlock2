@@ -71,7 +71,7 @@ cleos -u https://eos.greymass.com push transaction '{"delay_sec": 0, "max_cpu_us
       },
       "authorization": [
         {
-          "actor": "contractlock",
+          "actor": "YOUR_CONTRACT",
           "permission": "owner"
         }
       ]
@@ -109,7 +109,7 @@ cleos -u https://eos.greymass.com push transaction '{
       "authorization": [
         {
           "actor": "UNLOCKER_CONTRACT",
-          "permission": "owner"
+          "permission": "active"
         }
       ]
     }
