@@ -44,7 +44,7 @@ Please note that the **accountlock2** permission can only be used within the sco
 
 
 
-2. Call the lock action of the **accountlock2** smart contract. Set the following parameters:
+2. Call the **lock** action of the **accountlock2** smart contract. Set the following parameters:
 
 - **target_contract:** [YOUR_CONTRACT]
 - **unlock_time:** [enter the lock expiry in "YYYY-MM-DDThh:mm:ss" format]
