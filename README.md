@@ -38,20 +38,25 @@ cleos set account permission YOUR_CONTRACT owner
     -p YOUR_CONTRACT@owner
 
 ```
+Please note that the **accountlock2** permission can only be used within the scope of the accountlock smart contract to lock/unlock the account. No other action can be executed as the **accountlock2** keys are nullified.
 
 
-2. Call the lock action of the accountlock1 smart contract. Set the following parameters:
 
-target_contract: [YOUR_CONTRACT]
-lock_time: [enter the lock expiry in "YYYY-MM-DDThh:mm:ss" format]
-days_notice: [enter the notice period in number of days, it can be set to 0 for immediate release]
-unlocker_str: [enter an empty string "" or the name of the account allowed to restore key]
-public_key_string: [enter the public key that should be used to restore your account after the lock time has expired]
+
+
+2. Call the lock action of the **accountlock2** smart contract. Set the following parameters:
+
+- **target_contract:** [YOUR_CONTRACT]
+- **unlock_time:** [enter the lock expiry in "YYYY-MM-DDThh:mm:ss" format]
+- **days_notice:** [enter the notice period in number of days, it can be set to 0 for immediate release/unlock]
+- **public_key_string:** [enter the public key that should be used to restore your account after the lock time has expired]
+- **unlocker_str:** [enter an empty string "" or the name of the account that will be allowed to restore the account key]
+- **locked_auth:** [enter "both" to lock both owner and active authorities or "owner" to lock only the owner authority]
 
 Warning: 
-    - make sure to enter correctly your public key string or you might permanently loose control of your account.
-    - only the account specified in unlocker_str will be allowed to unlock the contract. If the ulocker_str parameter is left empty (""), then any account is allowed to unlock.
-    - a days_notice period is added as additional lock time after the first attempt to unlock the contract. When the notice days have expired, the unlock action can be called again to definitively release the contract. 
+- make sure to enter correctly your public key string or you might permanently loose control of your account.
+- only the account specified in *unlocker_str* will be allowed to unlock the contract. If the *unlocker_str* parameter is left empty (""), then any account is allowed to unlock.
+- a *days_notice* period is added as additional lock time after the first attempt to unlock the contract. When the notice days have expired, the unlock action can be called again to definitively release the contract.
 
 
 ##### CLEOS COMMAND:
@@ -84,9 +89,9 @@ cleos -u https://eos.greymass.com push transaction '{"delay_sec": 0, "max_cpu_us
 
 ## UNLOCK CONTRACT
 
-After the lock time has expired, call the unlock action of the **accountlock2** contract to restore the owner authority:
+After the lock time has expired, call the **unlock** action of the **accountlock2** contract to restore the owner authority:
 
-target_contract: [YOUR_CONTRACT]
+**target_contract:** [YOUR_CONTRACT]
 
 If *days_notice* > 0, then the *days_notice* period is added as additional lock time after the first attempt to unlock the contract.
 If *days_notice* = 0, this action will unlock your account by restoring the *public_key_string* as the owner authority.
