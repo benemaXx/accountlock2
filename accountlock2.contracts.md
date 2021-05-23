@@ -3,8 +3,11 @@
 ---
 
 spec-version: 2.0.0
+
 title: lock
+
 summary: 'Locks an account for a given period of time by temporarily removing its permissions keys'
+
 icon:
 
 ---
@@ -26,8 +29,11 @@ Moreover, {{$action.account}} acknowledges that the permission keys can be resto
 ---
 
 spec-version: 2.0.0
+
 title: unlock
+
 summary: 'unlocks the account by restoring the public key provided during lockup or starts the notice period'
+
 icon:
 
 ---
