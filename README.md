@@ -113,7 +113,7 @@ cleos -u https://eos.greymass.com push transaction '{
       },
       "authorization": [
         {
-          "actor": "UNLOCKER_CONTRACT",
+          "actor": "UNLOCKER_ACCOUNT",
           "permission": "active"
         }
       ]
