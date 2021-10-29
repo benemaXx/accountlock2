@@ -1,0 +1,109 @@
+{
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT ",
+    "version": "eosio::abi/1.1",
+    "types": [],
+    "structs": [
+        {
+            "name": "lock",
+            "base": "",
+            "fields": [
+                {
+                    "name": "target_contract",
+                    "type": "name"
+                },
+                {
+                    "name": "unlock_time",
+                    "type": "time_point_sec"
+                },
+                {
+                    "name": "days_notice",
+                    "type": "uint8"
+                },
+                {
+                    "name": "public_key_str",
+                    "type": "string"
+                },
+                {
+                    "name": "unlocker_str",
+                    "type": "string"
+                },
+                {
+                    "name": "locked_auth",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "locks",
+            "base": "",
+            "fields": [
+                {
+                    "name": "id",
+                    "type": "uint64"
+                },
+                {
+                    "name": "locked_contract",
+                    "type": "name"
+                },
+                {
+                    "name": "unlock_time",
+                    "type": "time_point_sec"
+                },
+                {
+                    "name": "days_notice",
+                    "type": "uint8"
+                },
+                {
+                    "name": "unlocker",
+                    "type": "string"
+                },
+                {
+                    "name": "locked_auth",
+                    "type": "string"
+                },
+                {
+                    "name": "public_key_str",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "unlock",
+            "base": "",
+            "fields": [
+                {
+                    "name": "target_contract",
+                    "type": "name"
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "name": "lock",
+            "type": "lock",
+            "ricardian_contract": "---\n\nspec-version: 2.0.0\n\ntitle: lock\n\nsummary: 'Locks an account for a given period of time by temporarily removing its permissions keys'\n\nicon:\n\n---\n\nRequires the account's owner authority.\n\n{{$action.account}} agrees to replace {{locked_auth}} permission/s keys for the account {{target_contract}} with the accountlock3@eosio.code permission.\n\n{{$action.account}} acknowledges that the permission keys can be restored only after the unlock date/time which is set on {{unlock_time}} and only after a notice period of {{days_notice}} days has elapsed since the first call to the \"unlock\" action.\n\nMoreover, {{$action.account}} acknowledges that the permission keys can be restored only by the following account: {{unlocker_str}} (if not specified, any account can restore keys after {{unlock_time}} and notice has elapsed).\n\n{{$action.account}} specifies the following key as the public key to be restored when the account will be unlocked: {{public_key_str}}"
+        },
+        {
+            "name": "unlock",
+            "type": "unlock",
+            "ricardian_contract": "---\n\nspec-version: 2.0.0\n\ntitle: unlock\n\nsummary: 'unlocks the account by restoring the public key provided during lockup or starts the notice period'\n\nicon:\n\n---\n\nRequires authority of the unlocker account or no authority if no unlocker account was provided during lockup.\n\nIf a notice period is required, {{$action.account}} agrees to start the notice period after which the account {{target_contract}} can be unlocked by a new call to this unlock action.\n\nIf a notice period is not required or has elapsed, {{$action.account}} agrees to restore the permission keys for the account {{target_contract}} using the public key provided during lockup."
+        }
+    ],
+    "tables": [
+        {
+            "name": "locks",
+            "type": "locks",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        }
+    ],
+    "ricardian_clauses": [
+        {
+            "id": "General disclaimer",
+            "body": "---\n\nspec-version: 2.0.0\ntitle: General disclaimer\nsummary: disclaimer\nicon:\n\n---\nBY USING THIS SOFTWARE, YOU ACKNOWLEDGE AND AGREE THAT THE SOFTWARE IS PROVIDED AS-IS, AND THAT THE AUTHOR OR COPYRIGHT HOLDER HAS NOT GRANTED AND DOES NOT GRANT ANY WARRANTY, EITHER EXPRESS OR IMPLIED, LEGAL OR CONVENTIONAL, INCLUDING FOR LATENT DEFECTS, WITH RESPECT TO THE SOFTWARE AND THE SPECIFICATIONS, AND THE AUTHOR OR COPYRIGHT HOLDER DISCLAIMS ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR PARTICULAR PURPOSE INCLUDING, WITHOUT LIMITATION, ANY LEGAL WARRANTY. \nIN NO EVENT WHATSOEVER SHALL THE AUTHOR OR COPYRIGHT HOLDER BE LIABLE TO YOU OR TO ANY OTHER PERSON OR ENTITY FOR ANY AND ALL DAMAGES OF WHATSOEVER NATURE, CHARACTER OR KIND INCLUDING, BUT NOT LIMITED TO, DIRECT, INCIDENTAL, CONSEQUENTIAL OR INDIRECT DAMAGES OR LOSSES (INCLUDING, BUT NOT LIMITED TO, LOSS OF PROFITS OR LOSS OF DATA) ARISING OUT OF THE INSTALLATION, USE OR MISUSE OF THE SOFTWARE OR THE SPECIFICATIONS, EVEN IF THE AUTHOR OR COPYRIGHT HOLDER HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES OR LOSSES. ANY STATEMENTS BY THE AUTHOR, COPYRIGHT HOLDER OR OTHERS DO NOT CONSTITUTE WARRANTIES HEREUNDER AND DO NOT FORM PART OF THIS DISCLAIMER OF LIABILITY AND SHALL NOT BE RELIED UPON BY YOU.\nSUBJECT TO THE FOREGOING DISCLAIMERS OF LIABILITY AND WARRANTY AND THE TERMS OF THE MIT LICENSE, THE SOFTWARE MAY BE USED TO PERFORM THE TASKS DESCRIBED IN THE README.MD DOCUMENT THAT ACCOMPANIES THE SOFTWARE SOURCE CODE, AS AMENDED BY THE AUTHOR OR COPYRIGHT HOLDER FROM TIME TO TIME."
+        }
+    ],
+    "variants": []
+}

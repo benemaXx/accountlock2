@@ -1,4 +1,4 @@
-# ACCOUNT-LOCK V.2
+# ACCOUNT-LOCK V.3
 Temporary immutablity for EOSIO smart contracts.
 Locks your EOSIO account and ensures that your smart contract is immutable for a given time period
 
@@ -17,7 +17,7 @@ Locks your EOSIO account and ensures that your smart contract is immutable for a
 
 Follow these steps to provide temporary immutability to your account:
 
-1. Add the **accountlock2@eosio.code** permission to the owner authority of your account:
+1. Add the **accountlock3@eosio.code** permission to the owner authority of your account:
 
 ##### CLEOS COMMAND:
 ```
@@ -28,7 +28,7 @@ cleos set account permission YOUR_CONTRACT owner
         “accounts”: [
             {
                 “permission”:{
-                    “actor”:”accountlock2″,
+                    “actor”:”accountlock3″,
                     ”permission”:”eosio.code”
                 },
                 ”weight”:1
@@ -38,13 +38,13 @@ cleos set account permission YOUR_CONTRACT owner
     -p YOUR_CONTRACT@owner
 
 ```
-Please note that the **accountlock2** permission can only be used within the scope of the accountlock smart contract to lock/unlock the account. No other action can be executed as the **accountlock2** keys are nullified.
+Please note that the **accountlock3** permission can only be used within the scope of the accountlock smart contract to lock/unlock the account. No other action can be executed as the **accountlock3** keys are nullified.
 
 
 
 
 
-2. Call the **lock** action of the **accountlock2** smart contract. Set the following parameters:
+2. Call the **lock** action of the **accountlock3** smart contract. Set the following parameters:
 
 - **target_contract:** [YOUR_CONTRACT]
 - **unlock_time:** [enter the lock expiry in "YYYY-MM-DDThh:mm:ss" format]
@@ -64,7 +64,7 @@ Warning:
 cleos -u https://eos.greymass.com push transaction '{"delay_sec": 0, "max_cpu_usage_ms": 0,
   "actions": [
     {
-      "account": "accountlock2",
+      "account": "accountlock3",
       "name": "lock",
       "data": {
         "target_contract": "YOUR_CONTRACT",
@@ -89,7 +89,7 @@ cleos -u https://eos.greymass.com push transaction '{"delay_sec": 0, "max_cpu_us
 
 ## UNLOCK CONTRACT
 
-After the lock time has expired, call the **unlock** action of the **accountlock2** contract to restore the owner authority:
+After the lock time has expired, call the **unlock** action of the **accountlock3** contract to restore the owner authority:
 
 **target_contract:** [YOUR_CONTRACT]
 
@@ -106,7 +106,7 @@ cleos -u https://eos.greymass.com push transaction '{
   "max_cpu_usage_ms": 0,
   "actions": [
     {
-      "account": "accountlock2",
+      "account": "accountlock3",
       "name": "unlock",
       "data": {
         "target_contract": "YOUR_CONTRACT"
@@ -125,4 +125,4 @@ cleos -u https://eos.greymass.com push transaction '{
 
 
 ## PROOF OF LOCK AND EXPIRY TIME
-Locked account names and the corresponding lock-up expiry dates are recorded on a table on the **accountlock2** contract. Any user of your dapp can check with a simple blockchain explorer that your account is currently locked. Other parameters as the notice period in days and the lockup expiry date are also provided in the contract's table.
+Locked account names and the corresponding lock-up expiry dates are recorded on a table on the **accountlock3** contract. Any user of your dapp can check with a simple blockchain explorer that your account is currently locked. Other parameters as the notice period in days and the lockup expiry date are also provided in the contract's table.
